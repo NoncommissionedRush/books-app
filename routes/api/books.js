@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
   const allBooks = await Book.find({});
 
   res.send(allBooks);
+  console.log("get request to /api/books made");
 });
 
 //@route  POST /api/books

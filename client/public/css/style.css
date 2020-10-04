@@ -29,3 +29,8 @@ body {
   margin: 3%;
   float: left;
 }
+
+.card img {
+  width: 200px;
+  height: auto;
+}

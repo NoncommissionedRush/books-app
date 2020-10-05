@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from "react";
-import axios from "axios";
 
 function Form(props) {
   const [formData, setFormdata] = useState({
@@ -15,25 +14,27 @@ function Form(props) {
   const onChange = (e) =>
     setFormdata({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async (e) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    const res = await axios.post("/api/books", formData, config);
-    console.log(res.data); // this is the id of the book from the database
-  };
-
   return (
-    <Fragment>
-      <form onSubmit={(e) => onSubmit(e)} className="input-form">
+    <div>
+      <form
+        onSubmit={(e) => {
+          props.onSubmit(e, formData);
+          setFormdata({
+            author: "",
+            title: "",
+            pages: "",
+            year: "",
+            cover: "",
+          });
+        }}
+        className="input-form"
+      >
         <input
           onChange={(e) => onChange(e)}
           type="text"
           name="author"
           placeholder="Autor"
+          autoComplete="off"
           value={author}
         />
         <input
@@ -41,6 +42,7 @@ function Form(props) {
           type="text"
           name="title"
           placeholder="Názov"
+          autoComplete="off"
           value={title}
         />
         <input
@@ -48,6 +50,7 @@ function Form(props) {
           type="text"
           name="pages"
           placeholder="Počet strán"
+          autoComplete="off"
           value={pages}
         />
         <input
@@ -55,6 +58,7 @@ function Form(props) {
           type="text"
           name="year"
           placeholder="Rok"
+          autoComplete="off"
           value={year}
         />
         <input
@@ -62,11 +66,13 @@ function Form(props) {
           type="text"
           name="cover"
           placeholder="Obálka"
+          autoComplete="off"
           value={cover}
         />
         <button>Pridaj</button>
       </form>
-    </Fragment>
+      <div className="overlay" onClick={props.onClick}></div>
+    </div>
   );
 }
 

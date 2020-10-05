@@ -1,6 +1,24 @@
+html,
+body,
+#root,
+.App {
+  height: 100%;
+  position: relative;
+}
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0 auto;
 }
+
 /* NAVBAR */
 .navbar {
   display: flex;
@@ -33,4 +51,41 @@ body {
 .card img {
   width: 200px;
   height: auto;
+}
+
+.input-form {
+  width: 400px;
+  text-align: center;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.input-form input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.input-form button {
+  padding: 5px;
+}
+
+.fab {
+  position: absolute !important;
+  right: 30px;
+  bottom: 30px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }

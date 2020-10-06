@@ -41,7 +41,7 @@ function App() {
   };
 
   if (isLoading) {
-    return <div className="loader">Loading</div>;
+    return <div className="loader">Loading...</div>;
   }
 
   return (

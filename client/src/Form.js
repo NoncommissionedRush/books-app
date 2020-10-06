@@ -15,7 +15,7 @@ function Form(props) {
     setFormdata({ ...formData, [e.target.name]: e.target.value });
 
   return (
-    <div>
+    <Fragment>
       <form
         onSubmit={(e) => {
           props.onSubmit(e, formData);
@@ -69,10 +69,10 @@ function Form(props) {
           autoComplete="off"
           value={cover}
         />
-        <button>Pridaj</button>
+        <button onClick={props.onClick}>Pridaj</button>
       </form>
       <div className="overlay" onClick={props.onClick}></div>
-    </div>
+    </Fragment>
   );
 }
 

@@ -19,7 +19,6 @@ function Navbar(props) {
         <li onClick={(e) => props.onClick(e)} data-value="all">
           Všetko
         </li>
-        <li>{props.value}</li>
       </ul>
     </header>
   );

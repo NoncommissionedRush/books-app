@@ -7,6 +7,7 @@ function Form(props) {
     pages: "",
     year: "",
     cover: "",
+    id: "",
   });
 
   const { author, title, pages, year, cover } = formData;
@@ -69,7 +70,7 @@ function Form(props) {
           autoComplete="off"
           value={cover}
         />
-        <button onClick={props.onClick}>Pridaj</button>
+        <button>Pridaj</button>
       </form>
       <div className="overlay" onClick={props.onClick}></div>
     </Fragment>

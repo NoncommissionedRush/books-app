@@ -7,10 +7,19 @@ function Navbar(props) {
         Prečítané knihy
       </a>
       <ul className="nav">
-        <li>2018</li>
-        <li>2019</li>
-        <li>2020</li>
-        <li>Všetko</li>
+        <li onClick={(e) => props.onClick(e)} data-value="2018">
+          2018
+        </li>
+        <li onClick={(e) => props.onClick(e)} data-value="2019">
+          2019
+        </li>
+        <li onClick={(e) => props.onClick(e)} data-value="2020">
+          2020
+        </li>
+        <li onClick={(e) => props.onClick(e)} data-value="all">
+          Všetko
+        </li>
+        <li>{props.value}</li>
       </ul>
     </header>
   );

@@ -35,7 +35,7 @@ function Form(props) {
           type="text"
           name="author"
           placeholder="Autor"
-          autoComplete="off"
+          autoComplete="on"
           value={author}
         />
         <input

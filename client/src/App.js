@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Card from "./Card";
 import Form from "./Form";
 import Button from "./Fab";
+import Summary from "./Summary";
 
 function App() {
   const [isLoading, setLoading] = useState(true);
@@ -59,7 +60,8 @@ function App() {
   return (
     <div className="App">
       <Navbar onClick={navClick} />
-      {isExpanded && <Form onClick={onClick} />}
+      <Summary allBooks={allBooks} year={year} />
+      {isExpanded && <Form onClick={onClick} onSubmit={onSubmit} />}
       {allBooks
         .filter((book) => year === "all" || book.year == year)
         .map((book, index) => (

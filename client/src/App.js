@@ -11,6 +11,7 @@ function App() {
   const [allBooks, setAllBooks] = useState([]);
   const [isExpanded, setExpanded] = useState(false);
   const [year, setYear] = useState("all");
+  const [isReversed, setReversed] = useState(false);
 
   // get data from database
   useEffect(() => {
@@ -57,16 +58,29 @@ function App() {
     return <div className="loader">Loading...</div>;
   }
 
+  // reverse order of the books on "all"
+  (() => {
+    if (year === "all" && !isReversed) {
+      allBooks.reverse();
+      setReversed(true);
+    } else if (year !== "all" && isReversed) {
+      allBooks.reverse();
+      setReversed(false);
+    }
+  })();
+
   return (
     <div className="App">
       <Navbar onClick={navClick} />
       <Summary allBooks={allBooks} year={year} />
       {isExpanded && <Form onClick={onClick} onSubmit={onSubmit} />}
-      {allBooks
-        .filter((book) => year === "all" || book.year == year)
-        .map((book, index) => (
-          <Card key={index} cover={book.cover} id={book.id} />
-        ))}
+      <div className="container">
+        {allBooks
+          .filter((book) => year === "all" || book.year == year)
+          .map((book, index) => (
+            <Card key={index} cover={book.cover} id={book.id} />
+          ))}
+      </div>
       <Button onClick={onClick} />
     </div>
   );

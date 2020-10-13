@@ -5,6 +5,7 @@ import Card from "./Card";
 import Form from "./Form";
 import Button from "./Fab";
 import Summary from "./Summary";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 function App() {
   const [isLoading, setLoading] = useState(true);
@@ -73,14 +74,20 @@ function App() {
     <div className="App">
       <Navbar onClick={navClick} />
       <Summary allBooks={allBooks} year={year} />
-      {isExpanded && <Form onClick={onClick} onSubmit={onSubmit} />}
-      <div className="container">
+      {isExpanded && (
+        <CSSTransition key="1" timeout={200} className="item">
+          <Form onClick={onClick} onSubmit={onSubmit} />
+        </CSSTransition>
+      )}
+      <TransitionGroup className="container" appear="true">
         {allBooks
           .filter((book) => year === "all" || book.year == year)
           .map((book, index) => (
-            <Card key={index} cover={book.cover} id={book.id} />
+            <CSSTransition key={index} timeout={200} classNames="item">
+              <Card key={index} cover={book.cover} id={book.id} />
+            </CSSTransition>
           ))}
-      </div>
+      </TransitionGroup>
       <Button onClick={onClick} />
     </div>
   );

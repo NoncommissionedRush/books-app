@@ -143,3 +143,23 @@ body {
   height: 100%;
   z-index: 1;
 }
+
+.item-enter,
+.item-appear {
+  opacity: 0;
+}
+
+.item-enter-active,
+.item-appear-active {
+  opacity: 1;
+  transition: all 0.2s ease-in;
+}
+
+.item-leave {
+  opacity: 1;
+}
+
+.item-leave-active {
+  opacity: 0;
+  transition: all 0.2s ease-in;
+}

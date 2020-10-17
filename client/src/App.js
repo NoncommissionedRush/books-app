@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from "./Navbar";
-import Card from "./Card";
-import Form from "./Form";
-import Button from "./Fab";
-import Summary from "./Summary";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { BrowserRouter as Router } from "react-router-dom";
+
+//components
+import Navbar from "./components/Navbar";
+import Form from "./components/Form";
+import Button from "./components/Fab";
+import Summary from "./components/Summary";
+import Container from "./components/Container";
 
 function App() {
+  // states
+  const [year, setYear] = useState("all");
   const [isLoading, setLoading] = useState(true);
   const [allBooks, setAllBooks] = useState([]);
   const [isExpanded, setExpanded] = useState(false);
-  const [year, setYear] = useState("all");
-  const [isReversed, setReversed] = useState(false);
 
   // get data from database
   useEffect(() => {
@@ -44,14 +46,14 @@ function App() {
     setExpanded(false);
   };
 
-  // clicking FAB or overaly shows or hides the input form
-  const onClick = () => {
-    setExpanded((prevValue) => !prevValue);
-  };
-
   // clicking the nav item sets "year"
   const navClick = async (e) => {
     setYear(e.target.getAttribute("data-value"));
+  };
+
+  // clicking FAB or overaly shows or hides the input form
+  const onClick = () => {
+    setExpanded((prevValue) => !prevValue);
   };
 
   // show loader
@@ -59,37 +61,16 @@ function App() {
     return <div className="loader">Loading...</div>;
   }
 
-  // reverse order of the books on "all"
-  (() => {
-    if (year === "all" && !isReversed) {
-      allBooks.reverse();
-      setReversed(true);
-    } else if (year !== "all" && isReversed) {
-      allBooks.reverse();
-      setReversed(false);
-    }
-  })();
-
   return (
-    <div className="App">
-      <Navbar onClick={navClick} />
-      <Summary allBooks={allBooks} year={year} />
-      {isExpanded && (
-        <CSSTransition key="1" timeout={200} className="item">
-          <Form onClick={onClick} onSubmit={onSubmit} />
-        </CSSTransition>
-      )}
-      <TransitionGroup className="container" appear="true">
-        {allBooks
-          .filter((book) => year === "all" || book.year == year)
-          .map((book, index) => (
-            <CSSTransition key={index} timeout={200} classNames="item">
-              <Card key={index} cover={book.cover} id={book.id} />
-            </CSSTransition>
-          ))}
-      </TransitionGroup>
-      <Button onClick={onClick} />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar navClick={navClick} />
+        <Summary year={year} allBooks={allBooks} />
+        <Container year={year} allBooks={allBooks} />
+        {isExpanded && <Form onClick={onClick} onSubmit={onSubmit} />}
+        <Button onClick={onClick} />
+      </div>
+    </Router>
   );
 }
 

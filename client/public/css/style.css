@@ -50,9 +50,17 @@ body {
 
 .nav li {
   display: inline;
-  color: white;
   margin-right: 1em;
+}
+
+.nav li a {
+  color: white;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.active {
+  text-decoration: underline !important;
 }
 /* Main content */
 
@@ -152,14 +160,24 @@ body {
 .item-enter-active,
 .item-appear-active {
   opacity: 1;
-  transition: all 0.2s ease-in;
+  transition: all 0.5s ease-in;
 }
 
-.item-leave {
+.item-exit {
   opacity: 1;
 }
 
-.item-leave-active {
+.item-exit-active {
   opacity: 0;
-  transition: all 0.2s ease-in;
+  transition: all 0.5s ease-in;
+}
+
+div.transition-group {
+  position: relative;
+}
+section.route-section {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 }

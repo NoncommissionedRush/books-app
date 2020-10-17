@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 function Summary(props) {
   const allBooks = props.allBooks;
   const year = props.year;
   const [bookCount, setBookCount] = useState(0);
   const [pageCount, setPageCount] = useState(0);
+
+  const location = useLocation();
 
   useEffect(() => {
     const displayedBooks = allBooks.filter(

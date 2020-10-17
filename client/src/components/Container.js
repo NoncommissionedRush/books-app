@@ -38,7 +38,7 @@ function Container(props) {
                 exact
                 path="/"
                 render={() => (
-                  <div>
+                  <div className="container">
                     {allBooks.map((book, index) => (
                       <Card key={index} cover={book.cover} id={book.id} />
                     ))}
@@ -49,7 +49,7 @@ function Container(props) {
                 exact
                 path="/2018"
                 render={() => (
-                  <div>
+                  <div className="container">
                     {allBooks
                       .filter((book) => book.year == 2018)
                       .map((book, index) => (
@@ -62,7 +62,7 @@ function Container(props) {
                 exact
                 path="/2019"
                 render={() => (
-                  <div>
+                  <div className="container">
                     {allBooks
                       .filter((book) => book.year == 2019)
                       .map((book, index) => (
@@ -75,7 +75,7 @@ function Container(props) {
                 exact
                 path="/2020"
                 render={() => (
-                  <div>
+                  <div className="container">
                     {allBooks
                       .filter((book) => book.year == 2020)
                       .map((book, index) => (

@@ -26,19 +26,17 @@ function Summary(props) {
 
     setBookCount(displayedBooks.length);
 
-    setShortestBook(
-      Math.min.apply(
-        Math,
-        displayedBooks.map((book) => book.pages)
-      )
+    let longestBook = displayedBooks.reduce((max, book) =>
+      max.pages > book.pages ? max : book
     );
 
-    setLongestBook(
-      Math.max.apply(
-        Math,
-        displayedBooks.map((book) => book.pages)
-      )
+    let shortestBook = displayedBooks.reduce((min, book) =>
+      min.pages < book.pages ? min : book
     );
+
+    setShortestBook(shortestBook.pages);
+
+    setLongestBook(longestBook.pages);
   }, [year, allBooks]);
 
   return (
